@@ -38,3 +38,31 @@ getData_phlCartoApi <- function(query,format = 'CSV'){
     mutate_all(na_if,"NULL")
   return(data)
 }
+
+
+
+
+# capture from Wonder API
+# Wonder API Documentation:https://wonder.cdc.gov/wonder/help/WONDER-API.html
+
+getData_wonderAPI <- function(
+      filePath_xml
+    , database
+  )
+{
+  # Pulled from https://github.com/hrbrmstr/wondr/blob/master/R/wondr.r
+  z <- httr::POST(
+        sprintf("https://wonder.cdc.gov/controller/datarequest/%s", database)
+      , body=list(request_xml=xml2::read_xml(filePath_xml))
+      , encode = "form"
+    ) %>%
+    httr::content(as = "text") %>%
+    xml2::read_xml()
+  
+
+  
+  
+  return(z)
+  
+  
+}
