@@ -59,7 +59,9 @@ getData_wonderAPI <- function(
     httr::content(as = "text") %>%
     xml2::read_xml()
   
-
+  # Add the ability to parse this xml into something workable.
+  # potentially from: https://github.com/socdataR/wonderapi
+  # This beautiful and now defunt repo.
   
   
   return(z)
