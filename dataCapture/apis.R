@@ -57,13 +57,13 @@ getData_cartoDbMonthQuery <- function(
   #'  X months of 311 data.
   
   # calculate query date.
-  start_date <- floor_date(
+  start_date <- lubridate::floor_date(
     Sys.Date()
     , unit = 'month'
   ) - months(monthsOfData)
   
   # Write query using glue.
-  query <-  glue(
+  query <-  glue::glue(
     "{baseQuery} '{start_date}'"
   )
   
